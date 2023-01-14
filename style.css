@@ -38,11 +38,40 @@ footer {
 }
 
 div.calculator-frame {
-    height: 500px;
-    width: 350px;
+    height: 639px;
+    width: 295px;
     border: 2px solid black;
-    border-radius: 10px;
+    border-radius: 35px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: black;
 }
 
+button {
+    width: 60px;
+    font-size: 2em;
+    border: none;
+    border-radius: 60%;
+    padding: 15px;
+    margin: 3px;
+}
 
+button#zero,
+button#clear {
+    width: 132px;
+    border-radius: 35px;
+}
+
+button.special {
+    background-color: #a0a0a0;
+    color: black;
+}
+
+button.number {
+    background-color: #313131;
+    color: #f5f8f7;
+}
+
+button.operator {
+    background-color: #f69906;
+    color: #f5f8f7;
+}
