@@ -1,6 +1,6 @@
 html,
 body {
-    font-family:Arial, Helvetica, sans-serif;
+    font-family: "Helvetica Neue", sans-serif;
     background-color: #f4f4f4;
     display: flex;
     flex-direction: column;
@@ -44,15 +44,46 @@ div.calculator-frame {
     border-radius: 35px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     background-color: black;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items:flex-end
+
+}
+
+.display {
+    height: 80px;
+
+    padding: 15px;
+    margin-top: 140px;
+}
+
+.display p {
+    font-size: 4.5em;
+    color: white;
+    text-align: right;
+    margin: 0;
+    font-weight: 300;
+
+}
+
+div.calculator-buttons {
+
 }
 
 button {
     width: 60px;
+    height: 60px;
     font-size: 2em;
     border: none;
     border-radius: 60%;
     padding: 15px;
     margin: 3px;
+    text-align: center;
+}
+
+button:hover {
+    filter: brightness(120%);
 }
 
 button#zero,
@@ -74,4 +105,15 @@ button.number {
 button.operator {
     background-color: #f69906;
     color: #f5f8f7;
+}
+
+.bottom {
+    width: 130px;
+    height: 4px;
+    background: white;
+    border-radius: 4px;
+    position: absolute;
+    bottom: 140px;
+    left: 50%;
+    transform: translateX(-50%);
 }
