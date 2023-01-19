@@ -30,7 +30,7 @@ function operate(a, b, operator) {
 // UI
 const btnClear = document.querySelector('#clear');
 const btnPercentage = document.querySelector('#percentage');
-const btnDivide = document.querySelector('#divison');
+const btnDivide = document.querySelector('#division');
 const btnSeven = document.querySelector('#number-seven');
 const btnEight = document.querySelector('#number-eight');
 const btnNine = document.querySelector('#number-nine');
@@ -49,16 +49,16 @@ const btnEqual = document.querySelector('#equal-result');
 const display = document.querySelector('#displayP')
 
 btnClear.addEventListener('click', clearAll);
-btnOne.addEventListener('click', handleEvent);
-btnTwo.addEventListener('click', handleEvent);
-btnThree.addEventListener('click', handleEvent);
-btnFour.addEventListener('click', handleEvent);
-btnFive.addEventListener('click', handleEvent);
-btnSix.addEventListener('click', handleEvent);
-btnSeven.addEventListener('click', handleEvent);
-btnEight.addEventListener('click', handleEvent);
-btnNine.addEventListener('click', handleEvent);
-btnPoint.addEventListener('click', handlePoint;
+btnOne.addEventListener('click', () => handleEvent(btnOne.textContent));
+btnTwo.addEventListener('click', () => handleEvent(btnTwo.textContent));
+btnThree.addEventListener('click', () => handleEvent(btnThree.textContent));
+btnFour.addEventListener('click', () => handleEvent(btnFour.textContent));
+btnFive.addEventListener('click', () => handleEvent(btnFive.textContent));
+btnSix.addEventListener('click', () => handleEvent(btnSix.textContent));
+btnSeven.addEventListener('click', () => handleEvent(btnSeven.textContent));
+btnEight.addEventListener('click', () => handleEvent(btnEight.textContent));
+btnNine.addEventListener('click', () => handleEvent(btnNine.textContent));
+btnPoint.addEventListener('click', handlePoint);
 btnEqual.addEventListener('click', evaluate);
 btnAdd.addEventListener('click', setCurrentOperator);
 btnSubtract.addEventListener('click', setCurrentOperator);
@@ -66,15 +66,19 @@ btnMultiply.addEventListener('click', setCurrentOperator);
 btnDivide.addEventListener('click', setCurrentOperator);
 
 
-function handleEvent() {
-    inputOne += parseInt(this.textContent);
-    populateDisplay(inputOne);
-
+function handleEvent(number) {
+    if (display.textContent === '0') display.textContent = '';
+    display.textContent += number;
 }
 
 function handlePoint() {
-    if
+    if (display.textContent.includes('.')) return;
+    display.textContent += '.'
 }
+
+function roundResult(number) {
+    return Math.round(number * 1000) / 1000
+  }
 
 function setCurrentOperator() {
     // if (result === null) evaluate();
@@ -83,12 +87,14 @@ function setCurrentOperator() {
     if (this.id === 'subtraction') currentOperator = subtract;
     if (this.id === 'addition') currentOperator = add;
     if (this.id === 'division') currentOperator = divide;
+    inputOne = Number(display.textContent);
+    resetScreen();
 }
 
 
-function populateDisplay(input) {
-    display.textContent = `${input}`;
-} 
+function resetScreen() {
+    display.textContent = '';
+}
 
 
 function clearAll() {
@@ -102,11 +108,11 @@ function clearAll() {
 
 
 function evaluate() {
-    if (currentOperator === undefined) return display.textContent = inputOne;
+    if (currentOperator === undefined) return display.textContent;
     if (currentOperator === "divide" && inputTwo === 0) { alert('You cannot divide by 0')};
-    display.textContent = result;
+    inputTwo = display.textContent;
     operate(inputOne, inputTwo, currentOperator)
-    display.textContent = `${result}`;
+    display.textContent = roundResult(result);
     inputOne = result;
     inputTwo = '';
     currentOperator = undefined;
