@@ -58,6 +58,7 @@ btnSix.addEventListener('click', () => handleEvent(btnSix.textContent));
 btnSeven.addEventListener('click', () => handleEvent(btnSeven.textContent));
 btnEight.addEventListener('click', () => handleEvent(btnEight.textContent));
 btnNine.addEventListener('click', () => handleEvent(btnNine.textContent));
+btnZero.addEventListener('click', () => handleEvent(btnZero.textContent));
 btnPoint.addEventListener('click', handlePoint);
 btnEqual.addEventListener('click', evaluate);
 btnAdd.addEventListener('click', setCurrentOperator);
@@ -81,8 +82,7 @@ function roundResult(number) {
   }
 
 function setCurrentOperator() {
-    // if (result === null) evaluate();
-
+    evaluate();
     if (this.id === 'multiplication') currentOperator = multiply;
     if (this.id === 'subtraction') currentOperator = subtract;
     if (this.id === 'addition') currentOperator = add;
@@ -108,9 +108,13 @@ function clearAll() {
 
 
 function evaluate() {
+    inputTwo = Number(display.textContent);
     if (currentOperator === undefined) return display.textContent;
-    if (currentOperator === "divide" && inputTwo === 0) { alert('You cannot divide by 0')};
-    inputTwo = display.textContent;
+    if (currentOperator === divide && display.textContent === '0') {
+        display.textContent = 'ERROR!'; 
+        return;
+    };
+
     operate(inputOne, inputTwo, currentOperator)
     display.textContent = roundResult(result);
     inputOne = result;
